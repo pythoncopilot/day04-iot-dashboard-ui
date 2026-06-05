@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Home IoT Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0b1220;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .room {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .room h2 {
+      margin-top: 0;
+      color: #38bdf8;
+    }
+
+    .device {
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px;
+      margin: 3px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .on {
+      background: #22c55e;
+      color: white;
+    }
+
+    .off {
+      background: #ef4444;
+      color: white;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #93c5fd;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Smart Home IoT Control Panel</h1>
+
+<div class="grid">
+
+  <!-- Living Room -->
+  <div class="room">
+    <h2>Living Room</h2>
+
+    <div class="device">
+      Lights:
+      <button class="on" onclick="setStatus('livingLight','ON')">ON</button>
+      <button class="off" onclick="setStatus('livingLight','OFF')">OFF</button>
+      <div class="status" id="livingLight">Status: OFF</div>
+    </div>
+
+    <div class="device">
+      Fan Speed:
+      <input type="range" min="0" max="100" oninput="setValue('livingFan', this.value)">
+      <div class="status" id="livingFan">Speed: 0%</div>
+    </div>
+  </div>
+
+  <!-- Bedroom -->
+  <div class="room">
+    <h2>Bedroom</h2>
+
+    <div class="device">
+      Lights:
+      <button class="on" onclick="setStatus('bedLight','ON')">ON</button>
+      <button class="off" onclick="setStatus('bedLight','OFF')">OFF</button>
+      <div class="status" id="bedLight">Status: OFF</div>
+    </div>
+
+    <div class="device">
+      AC Level:
+      <input type="range" min="16" max="30" oninput="setValue('bedAC', this.value)">
+      <div class="status" id="bedAC">Temp: 24°C</div>
+    </div>
+  </div>
+
+  <!-- Kitchen -->
+  <div class="room">
+    <h2>Kitchen</h2>
+
+    <div class="device">
+      Light:
+      <button class="on" onclick="setStatus('kitchenLight','ON')">ON</button>
+      <button class="off" onclick="setStatus('kitchenLight','OFF')">OFF</button>
+      <div class="status" id="kitchenLight">Status: OFF</div>
+    </div>
+  </div>
+
+  <!-- Bathroom -->
+  <div class="room">
+    <h2>Bathroom</h2>
+
+    <div class="device">
+      Exhaust Fan:
+      <button class="on" onclick="setStatus('bathFan','ON')">ON</button>
+      <button class="off" onclick="setStatus('bathFan','OFF')">OFF</button>
+      <div class="status" id="bathFan">Status: OFF</div>
+    </div>
+  </div>
+
+  <!-- Lounge -->
+  <div class="room">
+    <h2>Lounge</h2>
+
+    <div class="device">
+      TV Power:
+      <button class="on" onclick="setStatus('tv','ON')">ON</button>
+      <button class="off" onclick="setStatus('tv','OFF')">OFF</button>
+      <div class="status" id="tv">Status: OFF</div>
+    </div>
+  </div>
+
+  <!-- Garage -->
+  <div class="room">
+    <h2>Garage</h2>
+
+    <div class="device">
+      Door:
+      <button class="on" onclick="setStatus('garage','OPEN')">OPEN</button>
+      <button class="off" onclick="setStatus('garage','CLOSED')">CLOSE</button>
+      <div class="status" id="garage">Status: CLOSED</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Generic status update
+  function setStatus(id, value) {
+    document.getElementById(id).innerText = "Status: " + value;
+  }
+
+  // Generic value update (slider)
+  function setValue(id, value) {
+    if (id === "bedAC") {
+      document.getElementById(id).innerText = "Temp: " + value + "°C";
+    } else {
+      document.getElementById(id).innerText = "Speed: " + value + "%";
+    }
+  }
+</script>
+
+</body>
+</html>
